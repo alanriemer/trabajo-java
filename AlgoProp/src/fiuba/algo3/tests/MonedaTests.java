@@ -21,7 +21,7 @@ public class MonedaTests {
 	public void	test02CrearMonedaEnDolarDevuelveNombre(){
 		Moneda monedaNueva = new Moneda();
 		monedaNueva.agregar("Dolar");
-		assertTrue(monedaNueva.nombreMoneda(), "Dolar")
+		assertEquals(monedaNueva.nombreMoneda(), "Dolar")
 
 	}
 	
