@@ -1,22 +1,45 @@
 package fiuba.algo3.modelo;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AlgoProp {
-
+	
+	private Map<String, Inmobiliaria> inmobiliarias;
+	private Map<IdentificadorPublicacion, Publicacion> publicaciones;
+	private Filtro filtro;
+	private IdentificadorPublicacion nroPublicacion;
+	
+    public AlgoProp(){	
+    	this.inmobiliarias = new HashMap<String, Inmobiliaria>();
+    	this.publicaciones = new HashMap<IdentificadorPublicacion, Publicacion>();
+    	this.filtro = new Filtro();
+    	this.nroPublicacion = 0;
+    }
+    
 	public void agregarInmobiliaria(String inmobiliaria) {
 		Inmobiliaria nuevaInmobiliaria = new Inmobiliaria(inmobiliaria) ;
-		
-		
-		// TODO Auto-generated method stub
-		
+		this.inmobiliarias.put(inmobiliaria, nuevaInmobiliaria);
+	}
+	
+	private void incrementarNroPublicacion(){
+		this.nroPublicacion = this.nroPublicacion + 1;
 	}
 
 	public IdentificadorPublicacion publicarDepartamento(String barrio,
 			int precio, String moneda, int superficie, int expensas,
 			int ambientes, String inmobiliaria, String fechaDesde,
 			String fechaHasta) {
-		// TODO Auto-generated method stub
-		return null;
+		Fecha fechaNueva = new Fecha();
+		fechaNueva.cargarDesdeHasta(fechaDesde, fechaHasta);
+		
+		this.incrementarNroPublicacion();
+		Publicacion publicacionDptoNuevo = new PublicacionDepartamento(barrio, precio, moneda,
+				superficie, expensas, ambientes, inmobiliaria, fechaNueva);
+		
+		this.publicaciones.put(this.nroPublicacion, publicacionDptoNuevo);
+		this.inmobiliarias.get(inmobiliaria).agregarPubliacion(publicacionDptoNuevo);
+
+		return nroPublicacion;
 	}
 
 	public Double costoPublicacion(IdentificadorPublicacion numeroPublicacion) {

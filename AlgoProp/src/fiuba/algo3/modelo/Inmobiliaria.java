@@ -8,5 +8,9 @@ public class Inmobiliaria {
 	public Inmobiliaria (String nombre){
 		this.nombre = nombre;
 	}
+	public void agregarPubliacion(Publicacion publicacionDptoNuevo) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
