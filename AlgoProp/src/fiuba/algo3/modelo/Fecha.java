@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 public class Fecha {
     private Date fechaDesde;
@@ -14,12 +16,20 @@ public class Fecha {
 	public int devolverCantidadDias() {
 		return this.cantidadDias;
 	}
+	private int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	}
 
 	public void cargarDesdeHasta(String desde, String hasta) {
 		this.esTodoElMes = false;
-		fechaDesde.parse(desde);
-		this.cantidadDias = this.fechaDesde.getDay() -  this.fechaHasta.getDay();
-	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			this.fechaDesde = sdf.parse(desde);
+			this.fechaHasta = sdf.parse(hasta);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.cantidadDias = daysBetween(this.fechaDesde,this.fechaHasta)+1;
 	}
 
 

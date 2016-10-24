@@ -10,11 +10,12 @@ public class PublicacionDepartamento extends Publicacion{
 	public PublicacionDepartamento(){}
 	public PublicacionDepartamento(String barrio,
 			int precio, String moneda, int superficie, int expensas,
-			int ambientes, String inmobiliaria, Fecha fecha){
+			int ambientes, String inmobiliaria, Fecha fecha, IdentificadorPublicacion nroPublicacion){
 		this.conSuperficie = superficie;
 		this.conExpensas = expensas;
 		this.conCantidadAmbientes = ambientes;
-		super.cargar();
+		Moneda monedaNueva = new Moneda(moneda);
+		this.agregarDatos(barrio, precio, monedaNueva, inmobiliaria, fecha, nroPublicacion);
 		
 	}
 	
